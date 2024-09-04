@@ -3,7 +3,8 @@ import "./App.css";
 function App() {
   const dealDataLabels = [
     "Deal Number",
-    "Name",
+    "Business Manager",
+    "Customer Name",
     "Rate Spread",
     "Reserve",
     "VSC",
