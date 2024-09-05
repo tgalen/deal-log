@@ -5,6 +5,8 @@ import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import { styled } from "@mui/material/styles";
 import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableBody from "@mui/material/TableBody";
+import Table from "@mui/material/Table";
 
 function App() {
   const dealDataLabels = [
@@ -22,6 +24,7 @@ function App() {
     { advancedProtection: "Advanced Protection" },
     { advancedProtectionPlus: "Advanced Protection Plus" },
     { windshield: "Windshield" },
+    { other: "Other" },
     { totalGross: "Total Gross" },
   ];
 
@@ -35,6 +38,14 @@ function App() {
       reserve: 350,
       vsc: 500,
       gap: 300,
+      tireWheel: 0,
+      key: 0,
+      appearenceProtection: 0,
+      advancedProtection: 0,
+      advancedProtectionPlus: 0,
+      windshield: 0,
+      other: 0,
+      totalgross: 1150,
     },
     {
       dealNumber: 444444,
@@ -43,8 +54,27 @@ function App() {
       customerName: "Betty Wilson",
       rateSpread: 0,
       reserve: 200,
+      vsc: 0,
+      gap: 0,
+      tireWheel: 0,
+      key: 0,
+      appearenceProtection: 0,
+      advancedProtection: 0,
+      advancedProtectionPlus: 0,
+      windshield: 0,
+      other: 0,
+      totalgross: 200,
     },
   ];
+
+  const formatDealDataToDisplayInTable = (dealData) => {
+    const formattedDealData = [];
+    Object.values(dealData).forEach((dataPoint) => {
+      formattedDealData.push(dataPoint);
+    });
+    console.log(formattedDealData);
+    return formattedDealData;
+  };
 
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
     [`&.${tableCellClasses.head}`]: {
@@ -52,23 +82,46 @@ function App() {
       color: theme.palette.common.white,
     },
     [`&.${tableCellClasses.body}`]: {
-      fontSize: 10,
+      fontSize: 14,
+    },
+  }));
+
+  const StyledTableRow = styled(TableRow)(({ theme }) => ({
+    "&:nth-of-type(odd)": {
+      backgroundColor: theme.palette.action.hover,
+    },
+    // hide last border
+    "&:last-child td, &:last-child th": {
+      border: 0,
     },
   }));
 
   return (
     <div className="App">
       Deal Log
-      <TableContainer component={Paper}>
-        <TableHead>
-          <TableRow>
-            {dealDataLabels.map((label) => (
-              <StyledTableCell align="right">
-                {Object.values(label)}
-              </StyledTableCell>
-            ))}
-          </TableRow>
-        </TableHead>
+      <TableContainer component={Paper} align="center">
+        <Table>
+          <TableHead>
+            <TableRow>
+              {dealDataLabels.map((label) => (
+                <StyledTableCell align="right">
+                  {Object.values(label)}
+                </StyledTableCell>
+              ))}
+            </TableRow>
+          </TableHead>
+          <TableBody>
+            {mockData.map((dealData) => {
+              return (
+                <StyledTableRow>
+                  {formatDealDataToDisplayInTable(dealData).map((dataPoint) => (
+                    <StyledTableCell align="right">{dataPoint}</StyledTableCell>
+                  ))}
+                </StyledTableRow>
+              );
+            })}
+          </TableBody>
+        </Table>
       </TableContainer>
     </div>
   );
