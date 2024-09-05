@@ -1,4 +1,10 @@
 import "./App.css";
+import Paper from "@mui/material/Paper";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import { styled } from "@mui/material/styles";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
 
 function App() {
   const dealDataLabels = [
@@ -16,6 +22,7 @@ function App() {
     { advancedProtection: "Advanced Protection" },
     { advancedProtectionPlus: "Advanced Protection Plus" },
     { windshield: "Windshield" },
+    { totalGross: "Total Gross" },
   ];
 
   const mockData = [
@@ -39,18 +46,30 @@ function App() {
     },
   ];
 
+  const StyledTableCell = styled(TableCell)(({ theme }) => ({
+    [`&.${tableCellClasses.head}`]: {
+      backgroundColor: theme.palette.common.black,
+      color: theme.palette.common.white,
+    },
+    [`&.${tableCellClasses.body}`]: {
+      fontSize: 10,
+    },
+  }));
+
   return (
     <div className="App">
       Deal Log
-      <table border="1" cellPadding="10">
-        <thead>
-          <tr>
+      <TableContainer component={Paper}>
+        <TableHead>
+          <TableRow>
             {dealDataLabels.map((label) => (
-              <th key={label}>{Object.values(label)}</th>
+              <StyledTableCell align="right">
+                {Object.values(label)}
+              </StyledTableCell>
             ))}
-          </tr>
-        </thead>
-      </table>
+          </TableRow>
+        </TableHead>
+      </TableContainer>
     </div>
   );
 }
