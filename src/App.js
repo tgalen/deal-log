@@ -80,6 +80,7 @@ function App() {
     [`&.${tableCellClasses.head}`]: {
       backgroundColor: theme.palette.common.black,
       color: theme.palette.common.white,
+      width: "6%",
     },
     [`&.${tableCellClasses.body}`]: {
       fontSize: 14,
