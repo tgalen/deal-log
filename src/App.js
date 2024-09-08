@@ -33,7 +33,7 @@ function App() {
       dealNumber: 989898,
       deliveryDate: "9/1/2024",
       businessManager: "Tim Galen",
-      customerName: "Bill Johnson",
+      customerName: "Maura Rose",
       rateSpread: 1.5,
       reserve: 350,
       vsc: 500,
